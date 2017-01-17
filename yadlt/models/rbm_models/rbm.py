@@ -226,16 +226,7 @@ class RBM(UnsupervisedModel):
         elif self.visible_unit_type == 'gauss':
             vprobs = tf.truncated_normal(
                 (1, n_features), mean=visible_activation, stddev=self.stddev)
-<<<<<<< HEAD
-	
-	elif self.visible_unit_type == 'rsm': 
-	    vprobs = tf.nn.softmax(visible_activation)
 
-        else:
-            vprobs = None
-	
-        return vprobs
-=======
             vstates = None
 
         elif self.visible_unit_type == 'rsm':
@@ -248,7 +239,6 @@ class RBM(UnsupervisedModel):
             vstates = None
 
         return vprobs, vstates
->>>>>>> db2539b3f0547901550e46875544b71678f484a9
 
     def compute_positive_association(self, visible,
                                      hidden_probs, hidden_states):
