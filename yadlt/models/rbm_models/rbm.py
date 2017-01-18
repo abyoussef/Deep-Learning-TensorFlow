@@ -22,7 +22,7 @@ class RBM(UnsupervisedModel):
         models_dir='models/', data_dir='data/', summary_dir='logs/',
         model_name='rbm', dataset='mnist', loss_func='mean_squared',
         l2reg=5e-4, regtype='none', gibbs_sampling_steps=1, learning_rate=0.01,
-            batch_size=10, num_epochs=10, stddev=0.1, verbose=0):
+            batch_size=10, num_epochs=10, stddev=0.1, D=[], verbose=0):
         """Constructor.
 
         :param num_hidden: number of hidden units
@@ -30,6 +30,8 @@ class RBM(UnsupervisedModel):
         :param visible_unit_type: type of the visible units (bin, gauss or rsm)
         :param gibbs_sampling_steps: optional, default 1
         :param stddev: default 0.1. Ignored if visible_unit_type is not 'gauss'
+        :param D: default []. Optional documents dimensions array. Used only if
+            visible_unit_type is 'rsm'
         :param verbose: level of verbosity. optional, default 0
         """
         UnsupervisedModel.__init__(self, model_name, main_dir, models_dir,
@@ -44,6 +46,7 @@ class RBM(UnsupervisedModel):
         self.visible_unit_type = visible_unit_type
         self.gibbs_sampling_steps = gibbs_sampling_steps
         self.stddev = stddev
+        self.D = D
         self.verbose = verbose
 
         self.W = None
@@ -231,8 +234,10 @@ class RBM(UnsupervisedModel):
 
         elif self.visible_unit_type == 'rsm':
             vprobs = tf.nn.softmax(visible_activation)
-            # self.D = input.sum(axis=1)
-            vstates = tf.multinomial(vprobs, 1)  # self.D)  # document size
+            vstates = []
+            for i, vp in enumerate(vprobs):
+                vstates.append(
+                    np.random.multinomial(self.D[i], vp, size=1))
 
         else:
             vprobs = None
