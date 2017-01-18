@@ -5,5 +5,5 @@ summary_dir = 'home/ubuntu/pynb/model/logs/'  # directory to store tensorflow su
 vocab_dir  = '/home/ubuntu/pynb/Data/flickr_data/text/' # directory of the 2000 most common tags. 
 img_dir = 'home/ubuntu/pynb/Data/flickr_data/image/' # directory of the image data 
 
-
+img_vis = 'home/ubuntu/pynb/Data/images/' # directory for real images
 
