@@ -15,7 +15,7 @@ FLAGS = flags.FLAGS
 
 # Global configuration
 flags.DEFINE_boolean('encode_train', False, 'Whether to encode and store the training set.')
-flags.DEFINE_boolean('encode_valid', False, 'Whether to encode and store the validation set.')
+flags.DEFINE_boolean('encode_valid', False, 'Whether to encode and store the validatcd ion set.')
 flags.DEFINE_boolean('encode_test', False, 'Whether to encode and store the test set.')
 flags.DEFINE_string('dataset', 'mnist', 'Which dataset to use. ["mnist", "cifar10", "custom"]')
 flags.DEFINE_string('train_dataset', '', 'Path to train set .npy file.')
