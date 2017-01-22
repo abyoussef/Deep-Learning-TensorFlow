@@ -66,5 +66,6 @@ next/
 stored_models/
 
 .idea/
-
+.DS_Store
+.vscode/
 *.py~
